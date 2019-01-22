@@ -103,7 +103,7 @@ object Main extends App {
       val typeId      = record.get[Int]("typeID")
       val description = decrypt(cipher, record.get[String]("description")).trim
       val fields      = record.get[Seq[String]]("fields").map(field => decrypt(cipher, field).trim)
-      val note        = record.get[String]("note").trim
+      val note        = decrypt(cipher, record.get[String]("note")).trim
       Entry(typeId, description, fields, note)
     }
   }
